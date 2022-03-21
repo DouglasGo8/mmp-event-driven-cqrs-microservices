@@ -8,10 +8,17 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.udemy.event.driven.cqrs.discovery.app</groupId>
-  <artifactId>webapp-discovery</artifactId>
+  <groupId>com.udemy.event.driven.cqrs.webapp.discovery</groupId>
+  <artifactId>webapp-discoveryapi</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>Event-Driven :: Microservices CQRS :: SAGA :: Axon Camel and Spring Boot :: Webapp Discovery</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    </dependency>
+  </dependencies>
 
 </project>
