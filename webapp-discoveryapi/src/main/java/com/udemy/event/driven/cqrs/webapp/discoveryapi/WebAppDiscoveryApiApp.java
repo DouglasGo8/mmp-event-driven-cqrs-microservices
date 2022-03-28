@@ -1,4 +1,4 @@
-package com.udemy.event.driven.cqrs.webapp.discovery;
+package com.udemy.event.driven.cqrs.webapp.discoveryapi;
 
 
 import org.springframework.boot.SpringApplication;

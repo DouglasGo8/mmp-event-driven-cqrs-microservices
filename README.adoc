@@ -48,6 +48,7 @@ With the Saga EIP you can model the direct:buy route as a Saga composed of two d
 class MyRouter extends RouteBuilder {
   @Override
   public void configure() {
+
     from("direct:buy")
       .saga()
         .to("direct:newOrder")
@@ -67,6 +68,7 @@ class MyRouter extends RouteBuilder {
       .log("Order ${body} cancelled");
 
   }
+
 }
 ----
 
@@ -85,3 +87,15 @@ image::architecture/thumbs/SAGA_Orchestration_compensation_pattern.png[]
 
 . Commands - createSomething(Product p) / POST, PUT, DELETE and PATCH
 . Query - findSomething(String id) / GET
+
+== Axon Framework
+
+[source, bash]
+----
+docker run -d --name axonserver --rm -p 8024:8024 -p 8124:8124 -v /mnt/data/.volumes/axon/data:/data \
+-v /mnt/data/.volumes/axon/eventdata:/eventdata -v /mnt/data/.volumes/axon/config:/config axoniq/axonserver:latest
+----
+
+.Aggregator Class Concept
+image:architecture/thumbs/Aggregator_Class_Concept.png[]
+
