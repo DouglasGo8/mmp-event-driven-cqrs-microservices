@@ -99,3 +99,5 @@ docker run -d --name axonserver --rm -p 8024:8024 -p 8124:8124 -v /mnt/data/.vol
 .Aggregator Class Concept
 image:architecture/thumbs/Aggregator_Class_Concept.png[]
 
+.Axon Dashboard Event Store
+image::architecture/thumbs/Axon_Dashbard_Events.png[]
