@@ -19,7 +19,8 @@ public class ProductAggregate {
   private BigDecimal price;
   private Integer quantity;
 
-  public ProductAggregate() {}
+  public ProductAggregate() {
+  }
   //
 
   @CommandHandler

@@ -84,7 +84,6 @@ image::architecture/thumbs/SAGA_Orchestration_compensation_pattern.png[]
 . Axon
 
 == Command-Query Responsibility Segregation
-
 . Commands - createSomething(Product p) / POST, PUT, DELETE and PATCH
 . Query - findSomething(String id) / GET
 
