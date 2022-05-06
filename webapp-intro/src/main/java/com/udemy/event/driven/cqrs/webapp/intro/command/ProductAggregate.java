@@ -1,5 +1,7 @@
 package com.udemy.event.driven.cqrs.webapp.intro.command;
 
+import com.udemy.event.driven.cqrs.webapp.core.commands.ReserveProductCommand;
+import com.udemy.event.driven.cqrs.webapp.core.events.ProductReservedEvent;
 import com.udemy.event.driven.cqrs.webapp.intro.core.events.ProductCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -46,6 +48,22 @@ public class ProductAggregate {
 
   }
 
+  @CommandHandler
+  public void handle(ReserveProductCommand reserveProductCommand) {
+    if (quantity < reserveProductCommand.getQuantity()) {
+      throw new IllegalArgumentException("Wrong numbers in stock");
+    }
+
+    var productReservedEvt = ProductReservedEvent.builder()
+            .orderId(reserveProductCommand.getOrderId())
+            .productId(reserveProductCommand.getProductId())
+            .quantity(reserveProductCommand.getQuantity())
+            .userId(reserveProductCommand.getUserId())
+            .build();
+
+    AggregateLifecycle.apply(productReservedEvt);
+  }
+
   // Event Store producer action
   @EventSourcingHandler
   public void on(ProductCreatedEvent productCreatedEvent) {
@@ -53,5 +71,10 @@ public class ProductAggregate {
     this.price = productCreatedEvent.getPrice();
     this.title = productCreatedEvent.getTitle();
     this.quantity = productCreatedEvent.getQuantity();
+  }
+
+  @EventSourcingHandler
+  public void on (ProductReservedEvent productReservedEvent) {
+    this.quantity -= productReservedEvent.getQuantity();
   }
 }

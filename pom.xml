@@ -124,6 +124,7 @@
     </plugins>
   </build>
   <modules>
+    <module>webapp-core</module>
     <module>webapp-intro</module>
     <module>webapp-discovery</module>
     <module>webapp-gateway</module>

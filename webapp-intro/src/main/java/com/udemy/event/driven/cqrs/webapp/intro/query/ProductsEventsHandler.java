@@ -1,5 +1,6 @@
 package com.udemy.event.driven.cqrs.webapp.intro.query;
 
+import com.udemy.event.driven.cqrs.webapp.core.events.ProductReservedEvent;
 import com.udemy.event.driven.cqrs.webapp.intro.core.data.ProductEntity;
 import com.udemy.event.driven.cqrs.webapp.intro.core.data.ProductRepository;
 import com.udemy.event.driven.cqrs.webapp.intro.core.events.ProductCreatedEvent;
@@ -37,5 +38,13 @@ public class ProductsEventsHandler {
     } catch (IllegalArgumentException ex) {
       ex.printStackTrace();
     }
+  }
+
+  @EventHandler
+  public void on(ProductReservedEvent productReservedEvent) {
+    var productEntity = repo.findByProductId(productReservedEvent.getProductId());
+    //
+    productEntity.setQuantity(productEntity.getQuantity()- productReservedEvent.getQuantity());
+    repo.save(productEntity);
   }
 }
